@@ -5,3 +5,11 @@ Hello this is a test repo.
 Added line for first commit.
 
 Another line for another commit.
+
+> **Warning**
+>> This is a warning!
+> 
+
+> **Note**
+>> This is just a note.
+> 
