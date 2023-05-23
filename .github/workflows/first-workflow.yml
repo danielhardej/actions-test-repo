@@ -41,10 +41,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    
+
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
         echo "Hello ${{ github.event.inputs.name }}" 
         echo "Your favorite city is ${{ github.event.inputs.city }}"
         echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}"
+    # write the output to a new txt file, along with the date and time of the run
+    - name: Write to file
+      run: |
+        echo "Hello ${{ github.event.inputs.name }}" >> output.txt
+        echo "Your favorite city is ${{ github.event.inputs.city }}" >> output.txt
+        echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}" >> output.txt
+        echo "Date and time of run: $(date)" >> output.txt
