@@ -55,3 +55,9 @@ jobs:
         echo "Your favorite city is ${{ github.event.inputs.city }}" >> output.txt
         echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}" >> output.txt
         echo "Date and time of run: $(date)" >> output.txt
+    # Upload the output.txt file to the repo
+    - name: Upload a file
+      uses: actions/upload-artifact@v2
+      with:
+        name: output
+        path: output.txt
