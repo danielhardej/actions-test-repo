@@ -41,6 +41,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
+    - name: Set default identity
+      run: |
+        git config --global user.email "danielhardej@github.com"
+        git config --global user.name "Dan Hardej"
 
     # Runs a single command using the runners shell
     - name: Send greeting
