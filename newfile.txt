@@ -1,1 +1,6 @@
 This is a new file
+This is a new file
+Hello Daniel
+Your favorite city is Perth
+Is your favorite color blue: true
+Date and time of run: Tue May 23 12:58:53 UTC 2023
