@@ -32,6 +32,8 @@ jobs:
         paths: ${{ github.workspace }}/*.xml
         output: ${{ github.workspace }}/results-summary.md
       if: always()
+      
+    
 
     # I am adding the test results to the Job Summary
     - name: Add Test Results To Job Summary
@@ -42,19 +44,14 @@ jobs:
       if: always()
 
 
-    - name: Create Artifacts Folder
-      run: |
-        mkdir -p artifacts
-      # run only if the folder doesn't exist
-      if: !contains('artifacts')
-    
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.0
       with:
         # Artifact name
         name: mywebappbuildartifacts
         # A file, directory or wildcard pattern that describes what to upload
-        path: artifacts/**
+        path: ${{ github.workspace }}/results-summary.md
         # The desired behavior if no files are found using the provided path.
         if-no-files-found: error
         # Duration after which artifact will expire in days. 0 means using default retention.
