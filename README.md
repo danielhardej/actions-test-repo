@@ -20,6 +20,3 @@ Something something
 **Warning**
 A warning!!
 
-
-Editing the README so I can create a new branch and PR...
-Another edit so I can create another PR...
