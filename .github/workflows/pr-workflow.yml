@@ -41,18 +41,12 @@ jobs:
         cat "${{ github.workspace }}/results-summary.md" >> $GITHUB_STEP_SUMMARY
       if: always()
 
-    # I am publishing the artifacts, and also adding to job summary
-    - name: Publish Artifacts To Workflow
+
+    - name: Create Artifacts Folder
       run: |
-        if [ -d "artifacts" ]; then
-            echo "folder exists"
-            echo "I've created my artifacts to upload" >> $GITHUB_STEP_SUMMARY
-        else
-            echo "folder does not exist"
-            mkdir artifacts
-            echo "I've created my artifacts folder" >> $GITHUB_STEP_SUMMARY
-            echo "I've created my artifacts to upload" >> $GITHUB_STEP_SUMMARY
-        fi
+        mkdir -p artifacts
+      # run only if the folder doesn't exist
+      if: !contains(runner.workspace, 'artifacts')
     
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.0
