@@ -44,8 +44,8 @@ jobs:
     
     - name: Set default identity
       run: |
-        git config --global user.email $USER_EMAIL
-        git config --global user.name $USER_EMAIL
+        git config --global user.email USER_EMAIL
+        git config --global user.name USER_NAME
 
     # Runs a single command using the runners shell
     - name: Send greeting
