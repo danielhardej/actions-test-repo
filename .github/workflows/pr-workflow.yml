@@ -67,7 +67,7 @@ jobs:
         git config pull.rebase true
         git pull origin main
         git add -A
-        git rebase --continue
+        git rebase --skip
         git commit -m "Update results summary"
         git push origin HEAD:main
       if: always()
