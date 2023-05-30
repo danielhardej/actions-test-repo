@@ -66,7 +66,7 @@ jobs:
       run: |
         git config pull.rebase true
         git pull origin main
-        git add *
+        git add -A
         git rebase --continue
         git commit -m "Update results summary"
         git push origin HEAD:main
