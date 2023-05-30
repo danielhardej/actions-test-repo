@@ -40,7 +40,7 @@ jobs:
       run: |
         echo "TEST RESULTS:" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
-        cat "${{ github.workspace }}/results/summary.md" >> $GITHUB_STEP_SUMMARY
+        cat "${{ github.workspace }}/results-summary.md" >> $GITHUB_STEP_SUMMARY
       if: always()
 
 
