@@ -56,12 +56,20 @@ jobs:
         echo "User name: $(git config --global user.name)"
 
     # Runs a single command using the runners shell
-    - name: Send greeting
+    - name: Send greeting and write to file
       run: |
         echo "Hello ${{ github.event.inputs.name }}" 
         echo "Your favorite city is ${{ github.event.inputs.city }}"
         echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}"
-  
+        echo "This is a new file" >> newfile.txt
+        echo "Hello ${{ github.event.inputs.name }}" >> newfile.txt
+        echo "Your favorite city is ${{ github.event.inputs.city }}" >> newfile.txt
+        echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}" >> newfile.txt
+        echo "Date and time of run: $(date)" >> newfile.txt
+        git add newfile.txt
+        git commit -m "Update newfile.txt"
+        git push
+
   save-to-file:
     runs-on: ubuntu-latest
 
