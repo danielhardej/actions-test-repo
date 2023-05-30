@@ -45,8 +45,6 @@ jobs:
     - name: Create Artifacts Folder
       run: |
         mkdir -p artifacts
-      # run only if the folder doesn't exist
-      if: !contains('artifacts')
     
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.0
