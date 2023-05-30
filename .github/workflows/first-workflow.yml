@@ -44,7 +44,6 @@ jobs:
 
     - name: Set default identity
       run: |
-        git config --global --unset-all
         git config --global user.email ${{ vars.USER_EMAIL }}
         git config --global user.name ${{ vars.USER_NAME }}
     
