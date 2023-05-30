@@ -60,13 +60,12 @@ jobs:
         echo "User name: $(git config --global user.name)"
 
     # Runs a single command using the runners shell
-    - name: Send greeting and write to file
+    - name: Send greeting
       run: |
-        echo " --- PART 1 --- " >> ${{ github.event.inputs.output-file-name }}
-        echo "Date and time of run: $(date)" >> ${{ github.event.inputs.output-file-name }}
-        echo "Hello ${{ github.event.inputs.name }}" >> ${{ github.event.inputs.output-file-name }}
-        echo "Your favorite city is ${{ github.event.inputs.city }}" >> ${{ github.event.inputs.output-file-name }}
-        echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}" >> ${{ github.event.inputs.output-file-name }}
+        echo "Date and time of run: $(date)"
+        echo "Hello ${{ github.event.inputs.name }}"
+        echo "Your favorite city is ${{ github.event.inputs.city }}"
+        echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}"
 
   save-to-file:
 
@@ -83,22 +82,20 @@ jobs:
     
     - name: Checkout repository
       uses: actions/checkout@v3
-    
-    - name: Confirm identity
-      run: |
-        echo "User email: $(git config --global user.email)" >> ${{ github.event.inputs.output-file-name }}
-        echo "User name: $(git config --global user.name)" >> ${{ github.event.inputs.output-file-name }}
       
     - name: Checkout repository
       uses: actions/checkout@v3
 
     - name: Create and write to file
       run: |
-        echo " --- PART 2 --- " >> ${{ github.event.inputs.output-file-name }}
+        echo " --- Start of entry --- " >> ${{ github.event.inputs.output-file-name }}
         echo "Date and time of run: $(date)" >> ${{ github.event.inputs.output-file-name }}
+        echo "User email: $(git config --global user.email)" >> ${{ github.event.inputs.output-file-name }}
+        echo "User name: $(git config --global user.name)" >> ${{ github.event.inputs.output-file-name }}
         echo "Hello ${{ github.event.inputs.name }}" >> ${{ github.event.inputs.output-file-name }}
         echo "Your favorite city is ${{ github.event.inputs.city }}" >> ${{ github.event.inputs.output-file-name }}
         echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}" >> ${{ github.event.inputs.output-file-name }}
+        echo " --- End of entry --- " >> ${{ github.event.inputs.output-file-name }}
         git add ${{ github.event.inputs.output-file-name }}
         git commit -m "Update ${{ github.event.inputs.output-file-name }}"
         git push
