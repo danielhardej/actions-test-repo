@@ -46,6 +46,7 @@ jobs:
       run: |
         git config --global user.email ${{ vars.USER_EMAIL }}
         git config --global user.name ${{ vars.USER_NAME }}
+        git commit --amend --reset-author
     
     - name: Checkout repository
       uses: actions/checkout@v3
