@@ -44,12 +44,12 @@ jobs:
     # I am publishing the artifacts, and also adding to job summary
     - name: Publish Artifacts To Workflow
       run: |
-        if [ -d "${{ github.workspace }}/artifacts" ]; then
+        if [ -d "artifacts" ]; then
             echo "folder exists"
             echo "I've created my artifacts to upload" >> $GITHUB_STEP_SUMMARY
         else
             echo "folder does not exist"
-            mkdir ${{ github.workspace }}/artifacts
+            mkdir artifacts
             echo "I've created my artifacts folder" >> $GITHUB_STEP_SUMMARY
             echo "I've created my artifacts to upload" >> $GITHUB_STEP_SUMMARY
         fi
