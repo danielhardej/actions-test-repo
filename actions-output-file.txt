@@ -3,3 +3,11 @@ Date and time of run: Tue May 30 08:36:39 UTC 2023
 Hello Daniel
 Your favorite city is Saigon
 Is your favorite color blue: true
+ --- Start of entry --- 
+Date and time of run: Tue May 30 08:42:21 UTC 2023
+User email: danielhardej@github.com
+User name: Daniel Hardej
+Hello Daniel
+Your favorite city is Slough
+Is your favorite color blue: true
+ --- End of entry --- 
