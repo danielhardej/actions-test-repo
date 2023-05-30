@@ -29,7 +29,7 @@ on:
       output-file-name:
         description: "Name of output file"
         required: true
-        default: "$"
+        default: "actions-output-file.txt"
         type: string
       fav-color-blue:
         description: "Is your favorite color blue"
@@ -62,10 +62,8 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting and write to file
       run: |
-        echo "Date and time of run: $(date)" >> $
-        echo "Hello ${{ github.event.inputs.name }}" 
-        echo "Your favorite city is ${{ github.event.inputs.city }}"
-        echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}"
+        echo " --- PART 1 --- " >> ${{ github.event.inputs.output-file-name }}
+        echo "Date and time of run: $(date)" >> ${{ github.event.inputs.output-file-name }}
         echo "Hello ${{ github.event.inputs.name }}" >> ${{ github.event.inputs.output-file-name }}
         echo "Your favorite city is ${{ github.event.inputs.city }}" >> ${{ github.event.inputs.output-file-name }}
         echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}" >> ${{ github.event.inputs.output-file-name }}
@@ -88,8 +86,8 @@ jobs:
     
     - name: Confirm identity
       run: |
-        echo "User email: $(git config --global user.email)"
-        echo "User name: $(git config --global user.name)"
+        echo "User email: $(git config --global user.email)" >> ${{ github.event.inputs.output-file-name }}
+        echo "User name: $(git config --global user.name)" >> ${{ github.event.inputs.output-file-name }}
       
     - name: Checkout repository
       uses: actions/checkout@v3
