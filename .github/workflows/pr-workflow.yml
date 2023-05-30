@@ -56,7 +56,14 @@ jobs:
         if-no-files-found: error
         # Duration after which artifact will expire in days. 0 means using default retention.
         retention-days: 90
-        
+    
+    - name: Create and write to file
+      run: |
+        git add ${{ github.workspace }}/results-summary.md
+        git commit -m "Update results summary"
+        git push
+      if: always()
+      
     # - name: Final build status indicator
     #   if: success()
     #   run: | 
