@@ -64,8 +64,6 @@ jobs:
     
     - name: Create and write to file
       run: |
-        git pull origin main
-        git fetch origin main
         git add ${{ github.workspace }}/results-summary.md
         git commit -m "Update results summary"
         git push origin HEAD:main
