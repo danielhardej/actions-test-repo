@@ -69,9 +69,6 @@ jobs:
         echo "Hello ${{ github.event.inputs.name }}" >> ${{ github.event.inputs.output-file-name }}
         echo "Your favorite city is ${{ github.event.inputs.city }}" >> ${{ github.event.inputs.output-file-name }}
         echo "Is your favorite color blue: ${{ github.event.inputs.fav-color-blue }}" >> ${{ github.event.inputs.output-file-name }}
-        git add $
-        git commit -m "Update $"
-        git push
 
   save-to-file:
 
