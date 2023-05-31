@@ -1,4 +1,4 @@
-name: Dependabot Auto-complete
+name: Auto trigger PR close
 
 on:
   pull_request_target:
@@ -10,11 +10,12 @@ on:
 jobs:
     # output a few lines to confirm that this workflow was triggered
     confirm:
+        name: "Confirm workflow run"
         runs-on: ubuntu-latest
         # print the event payload to the log
         steps:
             - name: Print Event
               run: |
                 echo "${{ toJson(github.event) }}"
-                echo "This workflow has sucessfully run!"
+                echo "This workflow has sucessfully run on the closure of the PR!"
                 echo "Date and time of run: $(date)"
