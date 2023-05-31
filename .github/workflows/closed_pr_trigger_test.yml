@@ -1,0 +1,20 @@
+name: Dependabot Auto-complete
+
+on:
+  pull_request_target:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+    # output a few lines to confirm that this workflow was triggered
+    confirm:
+        runs-on: ubuntu-latest
+        # print the event payload to the log
+        steps:
+            - name: Print Event
+              run: |
+                echo "${{ toJson(github.event) }}"
+                echo "This workflow has sucessfully run!"
+                echo "Date and time of run: $(date)"
