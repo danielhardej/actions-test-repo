@@ -82,9 +82,6 @@ jobs:
     
     - name: Checkout repository
       uses: actions/checkout@v3
-      
-    - name: Checkout repository
-      uses: actions/checkout@v3
 
     - name: Create and write to file
       run: |
