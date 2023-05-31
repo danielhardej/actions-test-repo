@@ -26,61 +26,16 @@ jobs:
         git config --global user.email USER_EMAIL
         git config --global user.name USER_EMAIL
 
-    # create a test summary markdown file 
-    # if you don't specify an output file, it will automatically add 
-    # as a job summary. If you specify an output file, you have to 
-    # create your own step of adding it to the job summary. I am 
-    # intentionally doing that to show job summaries
-    - name: Create test summary
-      uses: test-summary/action@v1
-      with:
-        paths: ${{ github.workspace }}/*.xml
-        output: ${{ github.workspace }}/results-summary.md
-      if: always()
+    - name: Checkout repository
+      uses: actions/checkout@v3
       
-    
-
-    # I am adding the test results to the Job Summary
-    - name: Add Test Results To Job Summary
+    - name: Confirm identity
       run: |
-        echo "TEST RESULTS:" >> $GITHUB_STEP_SUMMARY
-        echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
-        cat "${{ github.workspace }}/results-summary.md" >> $GITHUB_STEP_SUMMARY
-      if: always()
-
-
-
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.0
-      with:
-        # Artifact name
-        name: mywebappbuildartifacts
-        # A file, directory or wildcard pattern that describes what to upload
-        path: ${{ github.workspace }}/results-summary.md
-        # The desired behavior if no files are found using the provided path.
-        if-no-files-found: error
-        # Duration after which artifact will expire in days. 0 means using default retention.
-        retention-days: 90
-    
-    - name: Create and write to file
+        echo "User email: $(git config --global user.email)"
+        echo "User name: $(git config --global user.name)"
+  
+    # Runs a single command using the runners shell
+    - name: Send greeting
       run: |
-        git config pull.rebase true
-        git pull origin main
-        git add -A
-        git rebase --skip
-        git commit -m "Update results summary"
-        git push origin HEAD:main
-      if: always()
-
-    # - name: Final build status indicator
-    #   if: success()
-    #   run: | 
-    #     curl -X POST "https://api.lifx.com/v1/lights/${{ vars.LIFX_BULB_LOCATION }}/effects/off" -H "Authorization: Bearer ${{ secrets.LIFX_TOKEN }}" -d 'power_off=false'
-    #     curl -X PUT "https://api.lifx.com/v1/lights/${{ vars.LIFX_BULB_LOCATION }}/state" -H "Authorization: Bearer ${{ secrets.LIFX_TOKEN }}" -d 'color=green'
-        
-    # - name: Final build status indicator
-    #   if: failure()
-    #   run: | 
-    #     curl -X POST "https://api.lifx.com/v1/lights/${{ vars.LIFX_BULB_LOCATION }}/effects/off" -H "Authorization: Bearer ${{ secrets.LIFX_TOKEN }}" -d 'power_off=false'
-    #     curl -X PUT "https://api.lifx.com/v1/lights/${{ vars.LIFX_BULB_LOCATION }}/state" -H "Authorization: Bearer ${{ secrets.LIFX_TOKEN }}" -d 'color=red'
-        
+        echo "Date and time of run: $(date)"
+        echo "Hello ${{ github.event.inputs.name }}"
