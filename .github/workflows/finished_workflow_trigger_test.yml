@@ -1,9 +1,6 @@
 name: Finished Workflow Trigger Test
 
 on:
-    pull_request_target:
-        types:
-          - closed
     workflow_run:
       workflows:
         - Pull Request Workflow
