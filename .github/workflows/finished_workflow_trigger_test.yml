@@ -17,6 +17,5 @@ jobs:
         steps:
         - name: Print Event
           run: |
-            echo ${{ toJson(github.event) }}
             echo "This workflow has sucessfully run on the completion of the PR Workflow!"
             echo "Date and time of run: $(date)"
