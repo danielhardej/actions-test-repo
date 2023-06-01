@@ -8,14 +8,8 @@ on:
       - main
 
 jobs:
-    auto-cancel:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Secrets Test
-          run: |
-            echo ${{ secrets.GITHUB_TOKEN }}
-
-    confirm-run:    
+    if_merged:
+        if: github.event.pull_request.merged == true
         runs-on: ubuntu-latest
         steps:
         - name: Confirm workflow run
