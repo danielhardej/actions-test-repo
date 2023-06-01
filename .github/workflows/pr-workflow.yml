@@ -19,12 +19,12 @@ jobs:
 
     steps:
    
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set default identity
       run: |
-        git config --global user.email USER_EMAIL
-        git config --global user.name USER_EMAIL
+        git config --global user.email ${{ vars.USER_EMAIL }}
+        git config --global user.name ${{ vars.USER_NAME }}
 
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -39,3 +39,9 @@ jobs:
       run: |
         echo "Date and time of run: $(date)"
         echo "Hello ${{ github.event.inputs.name }}"
+
+    - name: Merge PR
+      run: gh pr merge --auto --squash "$PR_URL"
+      env:
+        PR_URL: ${{ github.event.pull_request.html_url }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
