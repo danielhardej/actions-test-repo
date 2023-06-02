@@ -38,7 +38,6 @@ jobs:
     - name: Send greeting
       run: |
         echo "Date and time of run: $(date)"
-        echo "Hello ${{ github.event.inputs.name }}"
 
     - name: Merge PR
       run: gh pr merge --auto --squash "$PR_URL"
