@@ -1,0 +1,21 @@
+name: Open DevOpsSandbox -> Development PR
+
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  create_development_pr:
+    name: Open PR to development
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: checkout
+
+      - uses: repo-sync/pull-request@v2
+        name: pull-request
+        with:
+          destination_branch: "development"
+          pr_title: "Promote ${{ github.ref }} to development"
+          pr_reviewer: "team:DevOps"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
