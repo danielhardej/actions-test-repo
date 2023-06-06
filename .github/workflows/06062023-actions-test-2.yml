@@ -2,7 +2,7 @@ name: Open DevOpsSandbox -> Development PR
 
 on:
   pull_request:
-    branches: [ danielhardej-patch-5 ]
+    branches: [ main ]
     types: [ closed ]
 
 jobs:
