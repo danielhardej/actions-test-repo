@@ -27,7 +27,7 @@ jobs:
           git log -1
           git fetch --all
           git checkout $BASE_REF
-          gh pr merge --auto --squash "$PR_URL"
+          git merge --squash --ff-only origin/$HEAD_REF
           git push origin HEAD:$BASE_REF || true
           echo "Merge Done"
         env:
