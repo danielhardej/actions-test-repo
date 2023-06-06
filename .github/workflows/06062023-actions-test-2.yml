@@ -16,7 +16,6 @@ jobs:
       - uses: repo-sync/pull-request@v2
         name: pull-request
         with:
-          destination_branch: "development"
           pr_title: "Promote ${{ github.ref }} to development"
           pr_reviewer: "team:DevOps"
           github_token: ${{ secrets.GITHUB_TOKEN }}
