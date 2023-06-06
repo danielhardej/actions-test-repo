@@ -29,4 +29,4 @@ One more test to try `pull_request` instead of `pull_request_target`.
 
 Trying to trigger using PAT in 1st workflow.
 
-So it doesn't look like it works if you use a comment, but what if you click on the merge and close button?
+So it doesn't look like it works if you use a comment, but what if you click on the merge and close button? Yes, that works. Now what if we add the comment condition in the second...
