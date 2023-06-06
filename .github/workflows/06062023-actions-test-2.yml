@@ -17,4 +17,4 @@ jobs:
         name: pull-request
         with:
           pr_title: "Promote ${{ github.ref }} to development"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_PAT }}
