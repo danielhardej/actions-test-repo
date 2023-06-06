@@ -17,5 +17,4 @@ jobs:
         name: pull-request
         with:
           pr_title: "Promote ${{ github.ref }} to development"
-          pr_reviewer: "team:DevOps"
           github_token: ${{ secrets.GITHUB_TOKEN }}
