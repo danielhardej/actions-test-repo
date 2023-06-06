@@ -16,7 +16,7 @@ jobs:
 
       - name: Merge
         run: |
-          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ${{ github.event.issue.pull_request.url }} > pr_props.json
+          curl -H "Authorization: token ${{ secrets.GH_PAT }}" ${{ github.event.issue.pull_request.url }} > pr_props.json
           HEAD_REF=$(cat pr_props.json | jq .head.ref  | sed 's@"@@g')
           BASE_REF=$(cat pr_props.json | jq .base.ref  | sed 's@"@@g')
           echo "HEAD REF IS $HEAD_REF"
