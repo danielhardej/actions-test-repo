@@ -19,4 +19,4 @@ jobs:
           destination_branch: "development"
           pr_title: "Promote ${{ github.ref }} to development"
           pr_reviewer: "team:DevOps"
-          github_token: ${{ secrets.GH_PAT }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
