@@ -4,7 +4,7 @@ on:
     push:
       branches:
         - main
-        
+
 #   workflow_dispatch:
 #     inputs:
 #         want-to-hear-a-joke:
@@ -42,12 +42,12 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const { data } = await github.issues.create({
-              owner: context.repo.owner,
+            # create an issue
+            github.issues.create({
               repo: context.repo.repo,
-              title: 'New issue created from workflow',
-              body: 'This issue was created automatically from a workflow! Here's your dad joke: ${{ steps.myjoke.outputs.dad-joke }}',
-            });
-            console.log(`Created issue ${data.html_url}`);
+              owner: context.repo.owner,
+              title: 'Dad Joke',
+              body: ${{ steps.myjoke.outputs.dad-joke }}
+            })
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
