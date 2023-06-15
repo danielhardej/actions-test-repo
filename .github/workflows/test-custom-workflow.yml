@@ -14,7 +14,8 @@ on:
 #             default: true
 
 jobs:
-
+    # use this: https://docs.github.com/en/actions/managing-issues-and-pull-requests/scheduling-issue-creation
+    
   create-issue:
     name: Create Issue
     runs-on: ubuntu-latest
@@ -39,11 +40,15 @@ jobs:
             body: | 
               # Dad Jokes are no laughing matter
 
-              Here's a dad joke for you: ${{ steps.myjoke.outputs.dad-joke }}
+              ### Here's a dad joke for you:
+                
+                ${{ steps.myjoke.outputs.dad-joke }}
 
               Did you read it?
                - [ ] Yes
                - [ ] No
+            close-previous: true
+
         env:
             GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
