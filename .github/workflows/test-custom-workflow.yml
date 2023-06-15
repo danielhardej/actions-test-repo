@@ -21,6 +21,7 @@ jobs:
 
     
     steps:
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
@@ -33,6 +34,11 @@ jobs:
   create-issue:
     runs-on: ubuntu-latest
     steps:
+      - name: Set default identity
+        run: |
+          git config --global user.email ${{ vars.USER_EMAIL }}
+          git config --global user.name ${{ vars.USER_NAME }}
+
       - uses: actions/checkout@v3
 
       - id: myjoke
@@ -50,4 +56,4 @@ jobs:
               body: ${{ steps.myjoke.outputs.dad-joke }}
             })
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
