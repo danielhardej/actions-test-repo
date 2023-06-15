@@ -55,6 +55,6 @@ jobs:
               repo: context.repo.repo,
               owner: context.repo.owner,
               title: 'Dad Joke',
-              body: '${{ env.DAD_JOKE }}'
+              body: env.DAD_JOKE
             })
         
