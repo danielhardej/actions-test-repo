@@ -1,14 +1,17 @@
 name: Test My Custom Action
 
 on:
-  workflow_dispatch:
-    inputs:
-        want-to-hear-a-joke:
-            description: 'Do you want to hear a joke?'
-            required: true
-            type: boolean
-            default: true
-
+    push:
+      branches:
+        - main
+        
+#   workflow_dispatch:
+#     inputs:
+#         want-to-hear-a-joke:
+#             description: 'Do you want to hear a joke?'
+#             required: true
+#             type: boolean
+#             default: true
 
 jobs:
 
