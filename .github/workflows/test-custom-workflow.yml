@@ -19,7 +19,7 @@ jobs:
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - id: myjoke
         uses: mickeygoussetorg/get-a-dad-joke@v1
@@ -30,20 +30,21 @@ jobs:
   create-issue:
     runs-on: ubuntu-latest
     steps:
-        
-    - id: myjoke
-      uses: mickeygoussetorg/get-a-dad-joke@v1
+      - uses: actions/checkout@v3
 
-    - name: Create Issue
-      uses: actions/github-script@v4
-      with:
-        script: |
-          const { data } = await github.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: 'New issue created from workflow',
-            body: 'This issue was created automatically from a workflow! Here's your dad joke: ${{ steps.myjoke.outputs.dad-joke }}',
-          });
-          console.log(`Created issue ${data.html_url}`);
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - id: myjoke
+        uses: mickeygoussetorg/get-a-dad-joke@v1
+
+      - name: Create Issue
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const { data } = await github.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'New issue created from workflow',
+              body: 'This issue was created automatically from a workflow! Here's your dad joke: ${{ steps.myjoke.outputs.dad-joke }}',
+            });
+            console.log(`Created issue ${data.html_url}`);
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
