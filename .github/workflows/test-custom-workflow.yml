@@ -47,7 +47,8 @@ jobs:
               Did you read it?
                - [ ] Yes
                - [ ] No
-            close-previous: true
+            
+            close-previous: false
 
         env:
             GITHUB_TOKEN: ${{ secrets.GH_PAT }}
