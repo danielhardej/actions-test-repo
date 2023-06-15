@@ -15,46 +15,36 @@ on:
 
 jobs:
 
-  test-action:
-    
-    runs-on: ubuntu-latest
-
-    
-    steps:
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - id: myjoke
-        uses: mickeygoussetorg/get-a-dad-joke@v1
-        
-      - name: Output Dad Joke
-        run: echo "${{ steps.myjoke.outputs.dad-joke }}"
-
   create-issue:
+    name: Create Issue
     runs-on: ubuntu-latest
+    permissions:
+        issues: write
+    
     steps:
       - name: Set default identity
         run: |
           git config --global user.email ${{ vars.USER_EMAIL }}
           git config --global user.name ${{ vars.USER_NAME }}
 
-      - id: myjoke
+      - name: Dad Joke
+        id: myjoke
         uses: mickeygoussetorg/get-a-dad-joke@v1
 
-      - name: Create Issue
-        uses: actions/github-script@v5
+      - name: Create a Dad Joke Issue
+        uses: imjohnbo/issue-bot@v3
+        with:
+            assignees: "danielhardej"
+            title: "Dad Joke"
+            body: | 
+              # Dad Jokes are no laughing matter
+
+              Here's a dad joke for you: ${{ steps.myjoke.outputs.dad-joke }}
+
+              Did you read it?
+               - [ ] Yes
+               - [ ] No
         env:
             GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-            DAD_JOKE: ${{ steps.myjoke.outputs.dad-joke }}
 
-        with:
-          script: |
-            # create an issue
-            github.issues.create({
-              repo: context.repo.repo,
-              owner: context.repo.owner,
-              title: 'Dad Joke',
-              body: env.DAD_JOKE
-            })
         
