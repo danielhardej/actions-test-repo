@@ -39,13 +39,15 @@ jobs:
           git config --global user.email ${{ vars.USER_EMAIL }}
           git config --global user.name ${{ vars.USER_NAME }}
 
-      - uses: actions/checkout@v3
-
       - id: myjoke
         uses: mickeygoussetorg/get-a-dad-joke@v1
 
       - name: Create Issue
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
+        env:
+            GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+            DAD_JOKE: ${{ steps.myjoke.outputs.dad-joke }}
+
         with:
           script: |
             # create an issue
@@ -53,7 +55,6 @@ jobs:
               repo: context.repo.repo,
               owner: context.repo.owner,
               title: 'Dad Joke',
-              body: ${{ steps.myjoke.outputs.dad-joke }}
+              body: '${{ env.DAD_JOKE }}'
             })
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        
