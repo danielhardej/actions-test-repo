@@ -11,3 +11,11 @@ Hello Daniel
 Your favorite city is Slough
 Is your favorite color blue: true
  --- End of entry --- 
+ --- Start of entry --- 
+Date and time of run: Wed Jun 28 06:43:25 UTC 2023
+User email: danielhardej@github.com
+User name: Daniel Hardej
+Hello Daniel
+Your favorite city is Slough
+Is your favorite color blue: true
+ --- End of entry --- 
