@@ -28,7 +28,7 @@ jobs:
           git config --global user.email ${{ vars.USER_EMAIL }}
           git config --global user.name ${{ vars.USER_NAME }}
 
-      - name: Dad Joke
+      - name: Get Dad Joke
         id: myjoke
         uses: mickeygoussetorg/get-a-dad-joke@v1
 
