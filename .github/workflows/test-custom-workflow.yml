@@ -5,13 +5,13 @@ on:
       branches:
         - main
 
-#   workflow_dispatch:
-#     inputs:
-#         want-to-hear-a-joke:
-#             description: 'Do you want to hear a joke?'
-#             required: true
-#             type: boolean
-#             default: true
+    workflow_dispatch:
+        inputs:
+            want-to-hear-a-joke:
+                description: 'Do you want to hear a joke?'
+                required: true
+                type: boolean
+                default: true
 
 jobs:
     # use this: https://docs.github.com/en/actions/managing-issues-and-pull-requests/scheduling-issue-creation
