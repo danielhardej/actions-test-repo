@@ -1,0 +1,42 @@
+name: Add Urgent Label to Issue
+
+on:
+    issue_comment:
+        types: 
+            - created
+
+jobs:
+    label_issues:
+        name: Add Urgent Label to Issue
+        runs-on: ubuntu-latest
+        permissions:
+            issues: write
+        if: ${{ startsWith(github.event.comment.body, '/URGENT') }}
+        steps:
+            - name: Set default identity
+              run: |
+                    git config --global user.email ${{ vars.USER_EMAIL }}
+                    git config --global user.name ${{ vars.USER_NAME }}
+
+            - name: Add Label
+              uses: actions/github-script@v6
+              with:
+                script: |
+                    github.rest.issues.addLabels({
+                    issue_number: context.issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    labels: ["Urgent"]
+                    })
+            
+            - name: Add Assignee to Issue
+              uses: actions/github-script@v6
+              with:
+                script: |
+                    github.rest.issues.addAssignees({
+                    issue_number: context.issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    assignees: ["${{ github.actor }}"]
+                    })
+
