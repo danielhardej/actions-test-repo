@@ -50,4 +50,25 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
-        
+  save-to-file:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Set default identity
+      run: |
+        git config --global user.email ${{ vars.USER_EMAIL }}
+        git config --global user.name ${{ vars.USER_NAME }}
+    
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Create and write to file
+      run: |
+        echo " --- Start of entry --- " >> test_file_2.txt
+        echo "Date and time of run: $(date)" >> test_file_2.txt
+        echo " --- End of entry --- " >> test_file_2.txt
+        git add test_file_2.txt
+        git commit -m "Update test_file_2.txt"
+        git push
