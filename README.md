@@ -32,3 +32,5 @@ Trying to trigger using PAT in 1st workflow.
 So it doesn't look like it works if you use a comment, but what if you click on the merge and close button? Yes, that works. Now what if we add the comment condition in the second... Nope. Let's try again with the PAT in both workflows. Still nothing, let's try again
 ...
 What about changing the git merge command?
+
+Test commit to push and run Node.js.yml workflow!
