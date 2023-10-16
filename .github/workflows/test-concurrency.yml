@@ -15,9 +15,7 @@ jobs:
         steps:
         - name: Print group value
           run: |
-            echo "Should run below..."
-            echo ${{ github.event.workflow.concurrency.group }}
-            echo "Should run above... ^^^"
+            echo ${{ github.workflow }}-${{ github.ref }}
         - name: Checkout repo
           uses: actions/checkout@v2
         - name: Fetch
