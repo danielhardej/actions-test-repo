@@ -1,0 +1,27 @@
+name: test-concurrency
+
+on:
+  push:
+    tags: ['*'] # trigger runs on tag push
+  workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Print group value
+          run: echo ${{ github.event.workflow.concurrency.group }}
+        - name: Checkout repo
+          uses: actions/checkout@v2
+        - name: Fetch
+          run: |
+            git describe --all --contains ${{ github.sha }}
+            gh pr list --search ${{ github.sha }} --json number,headRefName,headRepositoryOwner,headRepositoryName > prs.json
+            export OUTPUT=$(jq -r '.[0].number' prs.json)
+            export OUTPUT2=$(jq -r '.[0].headRefName' prs.json)
+        env:
+            GH_TOKEN: ${{ github.token }}
