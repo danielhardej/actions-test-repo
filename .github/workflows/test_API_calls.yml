@@ -1,0 +1,37 @@
+name: test-concurrency
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout repo
+          uses: actions/checkout@v2
+        - name: Fetch
+          run: |
+            git describe --all --contains ${{ github.sha }}
+            export OUTPUT=$(jq -r '.[0].number' prs.json)
+            export OUTPUT2=$(jq -r '.[0].headRefName' prs.json)
+        env:
+            GH_TOKEN: ${{ github.token }}
+
+    check_runner:
+        runs-on: ubuntu-latest
+        outputs:
+            status: ${{ steps.set-runner-status.outputs.status }}
+            
+        steps:
+            - name: Check self-hosted runner status
+              id: set-runner-status
+              run: |
+                API_RESPONSE=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/actions/runners)
+                echo "API Response: $API_RESPONSE"
+            
+                STATUS=$(echo "$API_RESPONSE" | jq 'if .runners then (.runners[] | select(.name=="runner04") .status) else "offline" end // "offline"')
+                echo "Determined Runner Status: $STATUS"
+                echo "::set-output name=status::$STATUS"
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
