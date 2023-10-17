@@ -13,9 +13,6 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-        - name: Print group value
-          run: |
-            echo ${{ github.workflow }}-${{ github.ref }}
         - name: Checkout repo
           uses: actions/checkout@v2
         - name: Fetch
