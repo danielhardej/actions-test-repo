@@ -1,11 +1,11 @@
-name: test-concurrency
+name: Check Runner Status
 
 on:
   push:
   workflow_dispatch:
 
 jobs:
-    test:
+    test_checkout_repo:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout repo
