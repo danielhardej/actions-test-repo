@@ -6,18 +6,17 @@ on:
 jobs:
     check_runner:
         runs-on: ubuntu-latest
-        name: Check runner status
-        outputs:
-          status: ${{ steps.set-runner-status.outputs.status }}
-            
+        name: Check runner status  
         steps:
           - name: Check self-hosted runner status
             id: set-runner-status
             run: |
               status=$(echo "online")
-              echo "Determined Runner Status: $status"
               echo "::set-output name=status::$status"
               # echo "status=status" >> $GITHUB_OUTPUT
+              echo "Determined Runner Status: $status"
+        outputs:
+          status: ${{ steps.set-runner-status.outputs.status }}
 
     qa:
         runs-on: ubuntu-latest
