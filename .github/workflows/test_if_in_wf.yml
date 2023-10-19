@@ -24,7 +24,11 @@ jobs:
         runs-on: ubuntu-latest
         name: Trigger QA automation
         needs: check_runner
-        if: contains(needs.check_runner.outputs.STATUS, 'online')
         steps:
           - name: Trigger QA automation
-            run: echo "Trigger QA automation sucess!"
+            run: |
+             if [[ "${{contains(needs.check_runner.outputs.STATUS, 'online')}}" == "true" ]]; then
+               echo "Trigger QA automation sucess!"
+             else
+               echo "Trigger QA automation failed!"
+             fi
