@@ -6,7 +6,9 @@ on:
 jobs:
     check_runner:
         runs-on: ubuntu-latest
-        name: Check runner status  
+        name: Check runner status
+        outputs:
+          status: ${{ steps.set-runner-status.outputs.status }}
         steps:
           - name: Check self-hosted runner status
             id: set-runner-status
@@ -15,8 +17,7 @@ jobs:
               echo "::set-output name=status::$status"
               # echo "status=status" >> $GITHUB_OUTPUT
               echo "Determined Runner Status: $status"
-        outputs:
-          status: ${{ steps.set-runner-status.outputs.status }}
+        
 
     qa:
       runs-on: ubuntu-latest
