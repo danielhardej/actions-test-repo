@@ -1,0 +1,30 @@
+name: Testing IF
+
+on:
+  workflow_dispatch:
+
+jobs:
+    check_runner:
+        runs-on: ubuntu-latest
+        name: Check runner status
+        outputs:
+          status: ${{ steps.set-runner-status.outputs.status }}
+            
+        steps:
+          - name: Check self-hosted runner status
+            id: set-runner-status
+            run: |
+              STATUS=$(echo "online")
+              echo "Determined Runner Status: $STATUS"
+              echo "status=status" >> $GITHUB_OUTPUT
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    qa:
+        runs-on: ubuntu-latest
+        name: Trigger QA automation
+        needs: check_runner
+        if: contains(needs.check_runner.outputs.status, 'online')
+        steps:
+          - name: Trigger QA automation
+            run: echo "Trigger QA automation sucess!"
