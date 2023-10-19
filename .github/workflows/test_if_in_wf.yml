@@ -14,8 +14,8 @@ jobs:
           - name: Check self-hosted runner status
             id: set-runner-status
             run: |
-              STATUS=$(echo "online")
-              echo "Determined Runner Status: $STATUS"
+              status=$(echo "online")
+              echo "Determined Runner Status: $status"
               echo "status=status" >> $GITHUB_OUTPUT
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -27,7 +27,7 @@ jobs:
         steps:
           - name: Trigger QA automation
             run: |
-             echo "Runner status: $STATUS"
+             echo "Runner status: ${{needs.check_runner.outputs.status}}"
              if [[ "${{contains(needs.check_runner.outputs.status, 'online')}}" == "true" ]]; then
                echo "Trigger QA automation sucess!"
              else
