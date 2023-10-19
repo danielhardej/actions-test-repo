@@ -1,0 +1,17 @@
+name: Comment Triggered Workflow
+
+on:
+    issue_comment:
+        types: [created]
+
+jobs:
+    my-job:
+        runs-on: ubuntu-latest
+        if: github.event.issue.pull_request
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Echo comment body
+              run : |
+                echo "Comment body: ${{ github.event.comment.body }}"
+                echo "This workflow was successfully triggered by a comment on a pull request"
