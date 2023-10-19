@@ -19,17 +19,26 @@ jobs:
           status: ${{ steps.set-runner-status.outputs.status }}
 
     qa:
-        runs-on: ubuntu-latest
-        name: Trigger QA automation
-        needs: check_runner
-        steps:
-          - name: Trigger QA automation
-            run: |
-             echo "The output of the check_runner job is ${{ needs.check_runner.outputs.status }}"
-             echo "Runner status:"
-             echo ${{ needs.check_runner.outputs.status }}
-             if [[ "${{contains(needs.check_runner.outputs.status, 'online')}}" == "true" ]]; then
-               echo "Trigger QA automation sucess!"
-             else
-               echo "Trigger QA automation failed!"
-             fi
+      runs-on: ubuntu-latest
+      name: Trigger QA automation
+      needs: check_runner
+      steps:
+        - name: Trigger QA automation
+          run: |
+            echo "The output of the check_runner job is: ${{ needs.check_runner.outputs.status }}"
+            if [[ "${{contains(needs.check_runner.outputs.status, 'online')}}" == "true" ]]; then
+              echo "Trigger QA automation sucess!"
+            else
+              echo "Trigger QA automation failed!"
+            fi
+
+    qa_v2:
+      runs-on: ubuntu-latest
+      name: Trigger QA automation 2
+      needs: check_runner
+      if: contains(needs.check_runner.outputs.status, 'online')
+      steps:
+        - name: Trigger QA automation 2
+          run: |
+            echo "The output of the check_runner job is: ${{ needs.check_runner.outputs.status }}"
+            echo "Trigger QA automation success!"
