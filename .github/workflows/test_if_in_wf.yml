@@ -27,7 +27,7 @@ jobs:
         steps:
           - name: Trigger QA automation
             run: |
-             echo "Runner status: ${{needs.check_runner.outputs.status}}"
+             echo "Runner status: $STATUS"
              if [[ "${{contains(needs.check_runner.outputs.status, 'online')}}" == "true" ]]; then
                echo "Trigger QA automation sucess!"
              else
