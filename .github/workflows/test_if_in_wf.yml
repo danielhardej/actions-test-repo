@@ -16,6 +16,8 @@ jobs:
             run: |
               status=$(echo "online")
               echo "Determined Runner Status: $status"
+              echo "::set-output name=status::$status"
+              # echo "status=status" >> $GITHUB_OUTPUT
 
     qa:
         runs-on: ubuntu-latest
@@ -24,6 +26,7 @@ jobs:
         steps:
           - name: Trigger QA automation
             run: |
+             echo "The output of the check_runner job is ${{ needs.check_runner.outputs.status }}"
              echo "Runner status:"
              echo ${{ needs.check_runner.outputs.status }}
              if [[ "${{contains(needs.check_runner.outputs.status, 'online')}}" == "true" ]]; then
