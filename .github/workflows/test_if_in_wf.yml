@@ -15,7 +15,7 @@ jobs:
             id: set-runner-status
             run: |
               STATUS=$(echo "online")
-              echo "Determined Runner Status: '$STATUS'"
+              echo "Determined Runner Status: $STATUS"
               echo "status=status" >> $GITHUB_OUTPUT
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
