@@ -2,7 +2,7 @@ name: Dependabot Test Workflow
 
 on:
     pull_request:
-        types: [opened, synchronize, reopened]
+        types: [opened, synchronize, reopened, closed]
         branches: [main]
 
 jobs:
@@ -14,6 +14,6 @@ jobs:
             - name: Run tests
               run: |
                 echo "Running tests..."
-                echo {{ github.actor }}
+                echo ${{ github.actor }}
                 echo Dependabot secret: ${{ secrets.DEPENDABOT_SECRET }}
                 echo Regular Actions secret: ${{ secrets.REGULAR_SECRET }}
