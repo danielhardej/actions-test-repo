@@ -1,0 +1,35 @@
+name: CI test with concurrency
+
+on:
+    workflow_dispatch:
+    push:
+    pull_request:
+
+concurrency:
+    group: ${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    timer:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run timer
+              uses: ./
+              with:
+                  command: "sleep 10"
+
+    timer2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run timer
+              uses: ./
+              with:
+                  command: "sleep 10"
+
+    complete:
+        runs-on: ubuntu-latest
+        needs: [timer, timer2]
+        steps:
+            - name: Run complete
+              run: echo "Workflow complete"
+
