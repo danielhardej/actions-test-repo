@@ -6,6 +6,6 @@ on:
 jobs:
   build-and-test:
     name: Build and Test
-    uses: GovBuilt/GitHub-Actions/.github/workflows/build-and-test-orchard-core.yml@dev
+    uses: ./.github/workflows/build-and-test-orchard-core.yml@main
 
     
