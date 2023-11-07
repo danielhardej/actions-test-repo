@@ -1,0 +1,22 @@
+name: Build and Test Orchard Core solution 2
+
+on:
+  push:
+    branches:
+      - danielhardej-patch-10
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.CHECKOUT_TOKEN }}
+          submodules: recursive
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Build
+        run: dotnet build --configuration Release
+      - name: Test
+        run: dotnet test --configuration Release
+    
