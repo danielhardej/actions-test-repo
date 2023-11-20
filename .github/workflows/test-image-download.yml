@@ -1,8 +1,12 @@
 name: Test Image Download
 
 on:
-    push:
-        branches: [ main ]
+    workflow_dispatch:
+        # inputs:
+        #     image:
+        #         description: 'Image to download'
+        #         required: true
+        #         default: 'https://user-images.githubusercontent.com/19962342/284125826-e64f8f40-9bde-4f20-9698-3c6e607e08f6.png'
 
 jobs:
     download_image:
