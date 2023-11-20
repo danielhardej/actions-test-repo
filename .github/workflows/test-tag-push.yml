@@ -1,0 +1,16 @@
+name: Test Tag Push
+
+on:
+    push:
+        tags:
+            - 'v*'
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Run test
+              run: echo "This workflow runs on push of tags starting with 'v'"
