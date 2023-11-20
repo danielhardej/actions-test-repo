@@ -2,4 +2,6 @@
 import os
 
 print("Hello World!")
-print("Hello! It's time for another test")
+print("Commit 1")
+print("Commit 2")
+print("Commit 3")
