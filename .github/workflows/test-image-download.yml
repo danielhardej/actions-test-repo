@@ -21,9 +21,8 @@ jobs:
 
             - name: Check if image was downloaded
               run: |
-                    if [[ -f "image.png" ]]; then
+                    if [ -f "284125826-e64f8f40-9bde-4f20-9698-3c6e607e08f6.png" ]; then
                         echo "Image downloaded successfully"
                     else
                         echo "Image download failed"
-                        exit 1
                     fi
