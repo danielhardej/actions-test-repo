@@ -1,0 +1,25 @@
+name: Test Image Download
+
+on:
+    push:
+        branches: [ main ]
+
+jobs:
+    download_image:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Download image
+              run: |
+                curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -O https://user-images.githubusercontent.com/19962342/284125826-e64f8f40-9bde-4f20-9698-3c6e607e08f6.png
+
+            - name: Check if image was downloaded
+              run: |
+                    if [[ -f "image.png" ]]; then
+                        echo "Image downloaded successfully"
+                    else
+                        echo "Image download failed"
+                        exit 1
+                    fi
