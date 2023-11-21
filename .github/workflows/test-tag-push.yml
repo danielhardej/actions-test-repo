@@ -18,7 +18,7 @@ jobs:
 
     test-2:
         runs-on: ubuntu-latest
-        if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/tags/test/')
+        if: startsWith(github.ref, 'refs/heads/main') && startsWith(github.ref, 'refs/tags/test/')
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
