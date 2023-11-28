@@ -1,6 +1,9 @@
 name: Timeout test
 
 on:
+    push:
+        branches-ignore:
+            - "dan-dev-test"
     workflow_dispatch:
 
 jobs:
@@ -10,7 +13,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
             - name: Timeout
-              run: sleep 300
+              run: sleep 30
     
     confirm:
         needs: test
@@ -19,6 +22,6 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
             - name: Confirm
-              run: echo "Confirm"
+              run: echo "Confirm complete"
 
                 
