@@ -1,0 +1,25 @@
+name: Timeout test
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Timeout
+              run: sleep 30
+    
+    confirm:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Confirm
+              run: echo "Confirm complete"
+
+                
