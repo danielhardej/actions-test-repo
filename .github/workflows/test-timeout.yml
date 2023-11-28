@@ -2,8 +2,8 @@ name: Timeout test
 
 on:
     push:
-        branches-ignore:
-            - "dan-dev-test"
+        branches:
+            - 'dan-dev-test'
     workflow_dispatch:
 
 jobs:
