@@ -19,5 +19,3 @@ Something something
 
 **Warning**
 A warning!!
-
-Test with a tag...
