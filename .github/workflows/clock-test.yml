@@ -1,0 +1,21 @@
+name: Clock Test Workflow
+
+on:
+    workflow_dispatch
+
+jobs:
+    build-large:
+        name: Time testing action large runner
+        runs-on: macos-13-xlarge
+    
+        steps:
+        - name: Check time
+          run: date && curl "http://worldtimeapi.org/api/timezone/UTC"
+
+    build-small:
+        name: Time testing action smaller runner
+        runs-on: macos-latest
+
+        steps:
+        - name: Check time
+          run: date && curl "http://worldtimeapi.org/api/timezone/UTC"
