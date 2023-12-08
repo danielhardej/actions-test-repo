@@ -1,0 +1,45 @@
+name: Main and Staging Workflow
+
+on:
+    push:
+        branches: [main, staging]
+
+jobs:
+    main_actions:
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Run actions on main
+              run: |
+                echo "Running actions on main branch"
+                # the rest of your actions on the main branch
+                
+
+    deploy_to_staging:
+        needs: main_actions
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Deploy to staging
+              run: |
+                echo "Deploying to staging"
+                # the rest of your actions to deploy to staging
+
+
+    staging_actions:
+        needs: deploy_to_staging
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/staging'
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Run actions on staging
+              run: |
+                echo "Running actions on staging branch"
+                # the rest of your actions on the staging branch
