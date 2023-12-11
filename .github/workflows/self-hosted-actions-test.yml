@@ -1,0 +1,23 @@
+name: Test for Windows self-hosted runner
+
+on:
+    workflow_dispatch:
+        
+
+jobs:
+    test:
+        runs-on: self-hosted
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Timeout
+              run: sleep 10
+    
+    confirm:
+        needs: test
+        runs-on: self-hosted
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Confirm
+              run: echo "Confirm complete"
