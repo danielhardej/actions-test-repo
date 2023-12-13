@@ -1,0 +1,19 @@
+name: CI test
+on:
+    push:
+        
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Run tests
+              run: |
+                echo "Running timer for tests..."
+                echo ${{ github.actor }}
+                echo ${{ github.ref }}
+                # run a timer for 20s
+                sleep 30
+                echo "Tests complete"
