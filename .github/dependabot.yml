@@ -4,8 +4,16 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
+registries:
+  pypi:
+    type: python-index
+    url: https://skgh.jfrog.io/artifactory/api/pypi/pypi/simple
+    token: ${{secrets.SK_DEPENDABOT_SECRET}}
+    
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "pip"
+    directory: "/"
     schedule:
-      interval: "hourly"
+      interval: "daily"
+    registries:
+      - pypi
