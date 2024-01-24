@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@octokit/core": "^5.1.0",
+    "@octokit/rest": "^20.0.2"
+  },
+  "name": "test-repo-pub",
+  "description": "Hello this is a test repo.",
+  "version": "1.0.0",
+  "main": "listArtefacts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
