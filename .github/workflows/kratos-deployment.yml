@@ -1,0 +1,14 @@
+env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+name: kratos deployment
+on:
+    push:
+        branches:
+            - 'release/*'
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print confirmation message
+              run: echo "Trigger condition has been met, this workflow is running!"
