@@ -14,8 +14,5 @@ Another line for another commit.
 >> This is just a note.
 > 
 
-**Note**
+> **Note**
 Something something
-
-**Warning**
-A warning!!
